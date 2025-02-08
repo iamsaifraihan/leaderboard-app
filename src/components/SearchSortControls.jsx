@@ -34,16 +34,16 @@ const SearchSortControls = () => {
       <div className="flex gap-2 mt-2 sm:mt-0">
         <button
           onClick={handleSortByName}
-          className={`px-4 py-2 rounded-md ${
-            sortBy === "name" ? "bg-blue-600 text-white" : "bg-gray-200"
+          className={`cursor-pointer  px-4 py-2 rounded-md ${
+            sortBy === "name" ? "bg-violet-600 text-white" : "bg-gray-200"
           }`}
         >
           Sort by Name
         </button>
         <button
           onClick={handleSortByPoints}
-          className={`px-4 py-2 rounded-md ${
-            sortBy === "points" ? "bg-blue-600 text-white" : "bg-gray-200"
+          className={`cursor-pointer px-4 py-2 rounded-md ${
+            sortBy === "points" ? "bg-violet-600 text-white" : "bg-gray-200"
           }`}
         >
           Sort by Points

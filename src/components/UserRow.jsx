@@ -7,7 +7,7 @@ import {
   deleteUserThunk,
 } from "../store/slices/leaderboardSlice";
 
-const UserRow = memo(({ user }) => {
+const UserRow = memo(({ user, index }) => {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
@@ -20,25 +20,29 @@ const UserRow = memo(({ user }) => {
     dispatch(deleteUserThunk(user.id));
   };
   return (
-    <tr className="border-b hover:bg-gray-100 transition-all">
+    <tr
+      className={`hover:bg-violet-200 transition-all ${
+        index % 2 === 0 ? "bg-violet-50" : ""
+      }`}
+    >
       <td className="p-4 text-lg font-medium">{user.name}</td>
       <td className="p-4 text-center font-bold text-gray-700">{user.points}</td>
-      <td className="p-4 flex justify-center gap-2">
+      <td className="p-4 flex justify-end gap-2">
         <button
           onClick={handleIncrement}
-          className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
+          className="cursor-pointer border border-green-500  px-3 py-1 rounded-md hover:bg-green-600 hover:text-white transition"
         >
           ➕
         </button>
         <button
           onClick={handleDecrement}
-          className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition"
+          className="cursor-pointer border border-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-600 hover:text-white transition"
         >
           ➖
         </button>
         <button
           onClick={handleDelete}
-          className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+          className="cursor-pointer border border-red-500 px-3 py-1 rounded-md hover:bg-red-600 hover:text-white transition"
         >
           ❌
         </button>

@@ -1,7 +1,8 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { useEffect, Suspense, lazy, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
 import Loader from "../components/loader";
+import "../index.css";
 
 const UserRow = lazy(() => import("../components/UserRow"));
 const AddUserForm = lazy(() => import("../components/AddUserForm"));
@@ -22,6 +23,7 @@ const Leaderboard = () => {
     selectLeaderboardData,
     shallowEqual
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchUsersThunk());
@@ -37,7 +39,7 @@ const Leaderboard = () => {
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-xl mt-6">
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-xl mt-6 flex flex-col">
       <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
         🏆 Leaderboard
       </h1>
@@ -50,7 +52,7 @@ const Leaderboard = () => {
             <tr className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
               <th className="p-4 text-left">Name</th>
               <th className="p-4">Points</th>
-              <th className="p-4">Actions</th>
+              <th className="p-4 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -63,16 +65,28 @@ const Leaderboard = () => {
                 </tr>
               }
             >
-              {filteredUsers.map((user) => (
-                <UserRow key={user.id} user={user} />
+              {filteredUsers.map((user, index) => (
+                <UserRow key={user.id} user={user} index={index} />
               ))}
             </Suspense>
           </tbody>
         </table>
       </div>
-      <Suspense fallback={<Loader />}>
-        <AddUserForm />
-      </Suspense>
+      <div className="flex justify-end">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="mt-4 border-2 border-violet-600 px-3 py-2 rounded-md hover:bg-violet-600 hover:text-white transition cursor-pointer"
+        >
+          Add New User
+        </button>
+        <Suspense fallback={<Loader />}>
+          {/* <AddUserForm /> */}
+          <AddUserForm
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </Suspense>
+      </div>
     </div>
   );
 };
