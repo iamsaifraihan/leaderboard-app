@@ -44,13 +44,13 @@ const leaderBoardSlice = createSlice({
   initialState,
   reducers: {
     incrementPoints: (state, action) => {
-      const selectedUser = state.find(u => u.id === action.payload);
+      const selectedUser = state.users.find(u => u.id === action.payload);
       if (selectedUser) selectedUser.points += 1
       // Sort the user list 
       state.users.sort((a, b) => a.points - b.points)
     },
     decrementPoints: (state, action) => {
-      const selectedUser = state.find(u => u.id === action.payload);
+      const selectedUser = state.users.find(u => u.id === action.payload);
       if (selectedUser) selectedUser.points -= 1
       // Sort the user list 
       state.users.sort((a, b) => a.points - b.points)
