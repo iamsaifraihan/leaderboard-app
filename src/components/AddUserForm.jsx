@@ -23,15 +23,18 @@ const AddUserForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4 p-4 bg-gray-100 rounded-lg">
-      <h2 className="text-lg font-semibold mb-2">Add New User</h2>
-      <div className="flex gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className="mt-6 p-6 bg-gray-100 rounded-xl shadow-md"
+    >
+      <h2 className="text-xl font-semibold mb-3">Add New User</h2>
+      <div className="flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="p-2 border rounded w-full"
+          className="p-3 border rounded-md w-full focus:ring-2 focus:ring-blue-500"
           required
         />
         <input
@@ -39,7 +42,7 @@ const AddUserForm = () => {
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          className="p-2 border rounded w-1/4"
+          className="p-3 border rounded-md w-1/4 focus:ring-2 focus:ring-blue-500"
           required
         />
         <input
@@ -47,13 +50,13 @@ const AddUserForm = () => {
           placeholder="Address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          className="p-2 border rounded w-full"
+          className="p-3 border rounded-md w-full focus:ring-2 focus:ring-blue-500"
           required
         />
       </div>
       <button
         type="submit"
-        className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full"
+        className="mt-4 w-full bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition"
       >
         Add User
       </button>

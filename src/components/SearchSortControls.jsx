@@ -18,13 +18,13 @@ const SearchSortControls = () => {
         placeholder="Search by name..."
         value={searchQuery}
         onChange={(e) => handleSearch(e)}
-        className="p-2 border rounded w-full sm:w-1/2"
+        className="p-3 border rounded-md w-full sm:w-1/2 focus:ring-2 focus:ring-blue-500"
       />
 
       <div className="flex gap-2 mt-2 sm:mt-0">
         <button
           onClick={() => dispatch(setSortBy("name"))}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded-md ${
             sortBy === "name" ? "bg-blue-600 text-white" : "bg-gray-200"
           }`}
         >
@@ -32,7 +32,7 @@ const SearchSortControls = () => {
         </button>
         <button
           onClick={() => dispatch(setSortBy("points"))}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded-md ${
             sortBy === "points" ? "bg-blue-600 text-white" : "bg-gray-200"
           }`}
         >

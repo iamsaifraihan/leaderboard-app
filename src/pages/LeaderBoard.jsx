@@ -21,22 +21,27 @@ const Leaderboard = () => {
       user.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading)
+    return (
+      <p className="text-center text-lg font-semibold animate-pulse">
+        Loading...
+      </p>
+    );
+  if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold text-center text-blue-600 mb-4">
-        Leaderboard
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-xl">
+      <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
+        🏆 Leaderboard
       </h1>
       <SearchSortControls />
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-300 rounded-lg">
+      <div className="overflow-x-auto rounded-lg shadow-md">
+        <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-blue-500 text-white">
-              <th className="p-3">Name</th>
-              <th className="p-3">Points</th>
-              <th className="p-3">Actions</th>
+            <tr className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+              <th className="p-4 text-left">Name</th>
+              <th className="p-4">Points</th>
+              <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
