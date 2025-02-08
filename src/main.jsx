@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import store from "./store/index.js";
 import { Provider } from "react-redux";
+import { worker } from "./mocks/browsers.js";
 
 const MOUNT_NODE = document.getElementById("root");
 const appRoot = createRoot(MOUNT_NODE);
@@ -14,4 +15,8 @@ const appElm = (
     </StrictMode>
   </Provider>
 );
-appRoot.render(appElm);
+
+// Start the mock API before rendering the app
+worker.start().then(() => {
+  appRoot.render(appElm);
+});
