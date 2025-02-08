@@ -37,7 +37,7 @@ const Leaderboard = () => {
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-xl">
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-xl mt-6">
       <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
         🏆 Leaderboard
       </h1>
