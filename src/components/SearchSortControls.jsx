@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery, setSortBy } from "../store/slices/leaderboardSlice";
 import PropTypes from "prop-types";
@@ -7,10 +7,20 @@ const SearchSortControls = () => {
   const dispatch = useDispatch();
   const { searchQuery, sortBy } = useSelector((state) => state.leaderBoard);
 
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    dispatch(setSearchQuery(value));
-  };
+  const handleSearch = useCallback(
+    (e) => {
+      dispatch(setSearchQuery(e.target.value));
+    },
+    [dispatch]
+  );
+  const handleSortByName = useCallback(() => {
+    dispatch(setSortBy("name"));
+  }, [dispatch]);
+
+  const handleSortByPoints = useCallback(() => {
+    dispatch(setSortBy("points"));
+  }, [dispatch]);
+
   return (
     <div className="flex flex-wrap justify-between items-center mb-4">
       <input
@@ -23,7 +33,7 @@ const SearchSortControls = () => {
 
       <div className="flex gap-2 mt-2 sm:mt-0">
         <button
-          onClick={() => dispatch(setSortBy("name"))}
+          onClick={handleSortByName}
           className={`px-4 py-2 rounded-md ${
             sortBy === "name" ? "bg-blue-600 text-white" : "bg-gray-200"
           }`}
@@ -31,7 +41,7 @@ const SearchSortControls = () => {
           Sort by Name
         </button>
         <button
-          onClick={() => dispatch(setSortBy("points"))}
+          onClick={handleSortByPoints}
           className={`px-4 py-2 rounded-md ${
             sortBy === "points" ? "bg-blue-600 text-white" : "bg-gray-200"
           }`}

@@ -1,14 +1,26 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, Suspense, lazy } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
-import UserRow from "../components/UserRow";
-import AddUserForm from "../components/AddUserForm";
-import SearchSortControls from "../components/SearchSortControls";
+import Loader from "../components/loader";
+
+const UserRow = lazy(() => import("../components/UserRow"));
+const AddUserForm = lazy(() => import("../components/AddUserForm"));
+const SearchSortControls = lazy(() =>
+  import("../components/SearchSortControls")
+);
+
+const selectLeaderboardData = (state) => ({
+  users: state.leaderBoard.users,
+  loading: state.leaderBoard.loading,
+  error: state.leaderBoard.error,
+  searchQuery: state.leaderBoard.searchQuery,
+});
 
 const Leaderboard = () => {
   const dispatch = useDispatch();
   const { users, loading, error, searchQuery } = useSelector(
-    (state) => state.leaderBoard
+    selectLeaderboardData,
+    shallowEqual
   );
 
   useEffect(() => {
@@ -21,12 +33,7 @@ const Leaderboard = () => {
       user.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-  if (loading)
-    return (
-      <p className="text-center text-lg font-semibold animate-pulse">
-        Loading...
-      </p>
-    );
+  if (loading) return selectLeaderboardData;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
@@ -34,7 +41,9 @@ const Leaderboard = () => {
       <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
         🏆 Leaderboard
       </h1>
-      <SearchSortControls />
+      <Suspense fallback={<Loader />}>
+        <SearchSortControls />
+      </Suspense>
       <div className="overflow-x-auto rounded-lg shadow-md">
         <table className="w-full border-collapse">
           <thead>
@@ -45,13 +54,25 @@ const Leaderboard = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
-              <UserRow key={user.id} user={user} />
-            ))}
+            <Suspense
+              fallback={
+                <tr>
+                  <td colSpan="3">
+                    <Loader />
+                  </td>
+                </tr>
+              }
+            >
+              {filteredUsers.map((user) => (
+                <UserRow key={user.id} user={user} />
+              ))}
+            </Suspense>
           </tbody>
         </table>
       </div>
-      <AddUserForm />
+      <Suspense fallback={<Loader />}>
+        <AddUserForm />
+      </Suspense>
     </div>
   );
 };

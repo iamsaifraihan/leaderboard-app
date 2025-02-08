@@ -73,7 +73,7 @@ const leaderBoardSlice = createSlice({
       if (state.sortBy === 'name') {
         state.users.sort((a, b) => a.name.localeCompare(b.name))
       } else {
-        state.users.sort((a, b) => a.points - b.points)
+        state.users.sort((a, b) => b.points - a.points)
       }
     }
   },

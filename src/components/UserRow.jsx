@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import {
@@ -7,13 +7,18 @@ import {
   deleteUserThunk,
 } from "../store/slices/leaderboardSlice";
 
-const UserRow = ({ user }) => {
+const UserRow = memo(({ user }) => {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
     dispatch(incrementPointsThunk(user.id));
   };
-
+  const handleDecrement = () => {
+    dispatch(decrementPointsThunk(user.id));
+  };
+  const handleDelete = () => {
+    dispatch(deleteUserThunk(user.id));
+  };
   return (
     <tr className="border-b hover:bg-gray-100 transition-all">
       <td className="p-4 text-lg font-medium">{user.name}</td>
@@ -26,13 +31,13 @@ const UserRow = ({ user }) => {
           ➕
         </button>
         <button
-          onClick={() => dispatch(decrementPointsThunk(user.id))}
+          onClick={handleDecrement}
           className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition"
         >
           ➖
         </button>
         <button
-          onClick={() => dispatch(deleteUserThunk(user.id))}
+          onClick={handleDelete}
           className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
         >
           ❌
@@ -40,7 +45,9 @@ const UserRow = ({ user }) => {
       </td>
     </tr>
   );
-};
+});
+
+UserRow.displayName = "UserRow";
 
 UserRow.propTypes = {
   user: PropTypes.shape({
