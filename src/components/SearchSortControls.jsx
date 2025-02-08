@@ -11,27 +11,34 @@ const SearchSortControls = () => {
     const value = e.target.value;
     dispatch(setSearchQuery(value));
   };
-
   return (
-    <div className="controls">
+    <div className="flex flex-wrap justify-between items-center mb-4">
       <input
         type="text"
         placeholder="Search by name..."
         value={searchQuery}
         onChange={(e) => handleSearch(e)}
+        className="p-2 border rounded w-full sm:w-1/2"
       />
-      <button
-        onClick={() => dispatch(setSortBy("name"))}
-        className={sortBy === "name" ? "active" : ""}
-      >
-        Sort by Name
-      </button>
-      <button
-        onClick={() => dispatch(setSortBy("points"))}
-        className={sortBy === "points" ? "active" : ""}
-      >
-        Sort by Points
-      </button>
+
+      <div className="flex gap-2 mt-2 sm:mt-0">
+        <button
+          onClick={() => dispatch(setSortBy("name"))}
+          className={`px-4 py-2 rounded ${
+            sortBy === "name" ? "bg-blue-600 text-white" : "bg-gray-200"
+          }`}
+        >
+          Sort by Name
+        </button>
+        <button
+          onClick={() => dispatch(setSortBy("points"))}
+          className={`px-4 py-2 rounded ${
+            sortBy === "points" ? "bg-blue-600 text-white" : "bg-gray-200"
+          }`}
+        >
+          Sort by Points
+        </button>
+      </div>
     </div>
   );
 };

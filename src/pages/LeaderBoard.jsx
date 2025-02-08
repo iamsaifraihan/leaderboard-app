@@ -25,23 +25,27 @@ const Leaderboard = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="leaderboard">
-      <h1>Leaderboard</h1>
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-bold text-center text-blue-600 mb-4">
+        Leaderboard
+      </h1>
       <SearchSortControls />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Points</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map((user) => (
-            <UserRow key={user.id} user={user} />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse border border-gray-300 rounded-lg">
+          <thead>
+            <tr className="bg-blue-500 text-white">
+              <th className="p-3">Name</th>
+              <th className="p-3">Points</th>
+              <th className="p-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredUsers.map((user) => (
+              <UserRow key={user.id} user={user} />
+            ))}
+          </tbody>
+        </table>
+      </div>
       <AddUserForm />
     </div>
   );

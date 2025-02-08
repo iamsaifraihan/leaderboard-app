@@ -15,15 +15,28 @@ const UserRow = ({ user }) => {
   };
 
   return (
-    <tr>
-      <td>{user.name}</td>
-      <td>{user.points}</td>
-      <td>
-        <button onClick={handleIncrement}>➕</button>
-        <button onClick={() => dispatch(decrementPointsThunk(user.id))}>
+    <tr className="border-b hover:bg-gray-100 transition-all">
+      <td className="p-3">{user.name}</td>
+      <td className="p-3 text-center">{user.points}</td>
+      <td className="p-3 flex justify-center gap-2">
+        <button
+          onClick={handleIncrement}
+          className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+        >
+          ➕
+        </button>
+        <button
+          onClick={() => dispatch(decrementPointsThunk(user.id))}
+          className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+        >
           ➖
         </button>
-        <button onClick={() => dispatch(deleteUserThunk(user.id))}>❌</button>
+        <button
+          onClick={() => dispatch(deleteUserThunk(user.id))}
+          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+        >
+          ❌
+        </button>
       </td>
     </tr>
   );
