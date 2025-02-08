@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+/* NEW CLASS */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  cursor: pointer;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.controls {
+  margin-bottom: 10px;
+}
+
+.active {
+  font-weight: bold;
+}

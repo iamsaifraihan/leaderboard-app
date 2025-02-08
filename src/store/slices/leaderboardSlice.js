@@ -65,10 +65,10 @@ const leaderBoardSlice = createSlice({
     deleteUser: (state, action) => {
       state.users = state.users.filter(u => u.id !== action.payload)
     },
-    searchQuery: (state, action) => {
+    setSearchQuery: (state, action) => {
       state.searchQuery = action.payload
     },
-    sortBy: (state, action) => {
+    setSortBy: (state, action) => {
       state.sortBy = action.payload
       if (state.sortBy === 'name') {
         state.users.sort((a, b) => a.name.localeCompare(b.name))
@@ -109,8 +109,8 @@ export const {
   decrementPoints,
   addUser,
   deleteUser,
-  searchQuery,
-  sortBy
+  setSearchQuery,
+  setSortBy
 } = leaderBoardSlice.actions
 
 export default leaderBoardSlice.reducer;
