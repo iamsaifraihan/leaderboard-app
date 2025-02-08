@@ -1,8 +1,8 @@
 import { rest } from 'msw'
 
 let users = [
-  { id: 1, name: 'Alice', age: 25, points: 0, address: '123 Street, City' },
-  { id: 2, name: 'Bob', age: 28, points: 0, address: '456 Avenue, City' }
+  { id: 1, name: 'Alice', age: 25, points: 2, address: '123 Street, City' },
+  { id: 2, name: 'Bob', age: 28, points: 4, address: '456 Avenue, City' }
 ]
 
 export const handlers = [
