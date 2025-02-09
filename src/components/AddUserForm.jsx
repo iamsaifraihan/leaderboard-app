@@ -5,35 +5,48 @@ import { addUserThunk } from "../store/slices/leaderboardSlice";
 import Modal from "./Modal";
 
 const AddUserForm = ({ isOpen, onClose }) => {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [address, setAddress] = useState("");
+  // const [name, setName] = useState("");
+  // const [age, setAge] = useState("");
+  // const [address, setAddress] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    address: "",
+  });
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
 
   const validateForm = () => {
     const newErrors = {};
-    if (name.length > 250)
+    if (formData.name.length > 250)
       newErrors.name = "Name must be 250 characters or less.";
-    if (age < 0) newErrors.age = "Age cannot be negative.";
-    if (address.length > 250)
+    if (formData.age < 0) newErrors.age = "Age cannot be negative.";
+    if (formData.address.length > 250)
       newErrors.address = "Address must be 250 characters or less.";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleChange = (e) => {
+    console.log(e.target);
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      if (name && age && address) {
-        const data = { name, age: Number(age), address };
-        dispatch(addUserThunk(data));
-        setName("");
-        setAge("");
-        setAddress("");
-        setErrors({});
-        onClose();
-      }
+      dispatch(addUserThunk(formData));
+      setFormData({
+        name: "",
+        age: "",
+        address: "",
+      });
+      setErrors({});
+      onClose();
     }
   };
 
@@ -45,9 +58,10 @@ const AddUserForm = ({ isOpen, onClose }) => {
           <div className="w-full">
             <input
               type="text"
+              name="name"
               placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formData.name}
+              onChange={(e) => handleChange(e)}
               className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring-2 focus:ring-blue-500 ${
                 errors.name ? "border-red-500" : ""
               }`}
@@ -60,9 +74,10 @@ const AddUserForm = ({ isOpen, onClose }) => {
           <div className="w-full">
             <input
               type="number"
+              name="age"
               placeholder="Age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
+              value={formData.age}
+              onChange={handleChange}
               className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring-2 focus:ring-blue-500 ${
                 errors.age ? "border-red-500" : ""
               }`}
@@ -74,9 +89,10 @@ const AddUserForm = ({ isOpen, onClose }) => {
           </div>
           <div className="w-full">
             <textarea
+              name="address"
               placeholder="Address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={formData.address}
+              onChange={handleChange}
               className={`p-3 border border-violet-600 rounded-sm w-full focus:ring-2 focus:ring-blue-500 ${
                 errors.address ? "border-red-500" : ""
               }`}

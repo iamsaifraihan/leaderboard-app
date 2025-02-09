@@ -1,7 +1,8 @@
-import React, { useEffect, Suspense, lazy, useState } from "react";
+import React, { useEffect, Suspense, lazy, useState, useCallback } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
 import Loader from "../components/loader";
+import UserDetails from "../components/UserDetails";
 import "../index.css";
 
 const UserRow = lazy(() => import("../components/UserRow"));
@@ -25,6 +26,7 @@ const Leaderboard = () => {
     shallowEqual
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     dispatch(fetchUsersThunk());
@@ -44,6 +46,10 @@ const Leaderboard = () => {
         }
         return 0;
       });
+
+  const handleCloseUserDetails = useCallback(() => {
+    setSelectedUser(null);
+  }, []);
 
   if (loading) return selectLeaderboardData;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
@@ -76,7 +82,12 @@ const Leaderboard = () => {
               }
             >
               {filteredUsers.map((user, index) => (
-                <UserRow key={user.id} user={user} index={index} />
+                <UserRow
+                  key={user.id}
+                  user={user}
+                  index={index}
+                  onSelect={() => setSelectedUser(user)}
+                />
               ))}
             </Suspense>
           </tbody>
@@ -97,6 +108,7 @@ const Leaderboard = () => {
           />
         </Suspense>
       </div>
+      <UserDetails user={selectedUser} onClose={handleCloseUserDetails} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import {
   deleteUserThunk,
 } from "../store/slices/leaderboardSlice";
 
-const UserRow = memo(({ user, index }) => {
+const UserRow = memo(({ user, index, onSelect }) => {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
@@ -25,7 +25,12 @@ const UserRow = memo(({ user, index }) => {
         index % 2 === 0 ? "bg-violet-50" : ""
       }`}
     >
-      <td className="p-4 text-lg font-medium">{user.name}</td>
+      <td
+        className="p-4 text-lg font-medium cursor-pointer text-blue-600 hover:underline"
+        onClick={onSelect}
+      >
+        {user.name}
+      </td>
       <td className="p-4 text-center font-bold text-gray-700">{user.points}</td>
       <td className="p-4 flex justify-end gap-2">
         <button
