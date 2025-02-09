@@ -12,6 +12,7 @@ A modern **React & Redux (RTK)** leaderboard application built with **Vite** and
 - ✅ **Search Users**: Quickly find users using the search bar.
 - ✅ **Responsive & Modern UI**: Built with **Tailwind CSS** for a sleek and responsive design.
 - ✅ **Fully Tested**: Comprehensive testing with **Vitest** and **React Testing Library**.
+- ✅ **Light & Dark mode**: Choose between light and dark themes for better readability.
 
 ---
 
@@ -100,17 +101,14 @@ The app is fully tested using **Vitest** and **React Testing Library** to ensure
 
 ## 🖥️ Demo
 
-🚀 **Live Demo** (if hosted on Vercel, Netlify, or GitHub Pages):
+🚀 **Live Demo** ( hosted on Vercel):
 
-👉 [Leaderboard App Live](https://www.notion.so/Leader-board-APP-development-193279608ef5804ca569e8ace46ea283?pvs=21) _(update this link when deployed)_
+👉 [Leaderboard App Live](https://leaderboard-app-pied.vercel.app/)
 
 📸 **Screenshots**:
 
-| ![Home Page](https://via.placeholder.com/600x400.png?text=Home+Page) | ![User Details](https://via.placeholder.com/600x400.png?text=User+Details) |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| **Home Page**                                                        | **User Details**                                                           |
-
-_(Replace the placeholder images with actual screenshots of your app for better visibility.)_
+| ![Light Mode](https://i.imghippo.com/files/bOah3610SOQ.png) | ![Dark mode](https://i.imghippo.com/files/fr3417hg.png) |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
 
 ---
 
@@ -126,7 +124,7 @@ This project is open-source and available under the **MIT License**. Feel free t
 
 - 🔗 [GitHub](https://github.com/iamsaifraihan)
 - 🔗 [LinkedIn](https://www.linkedin.com/in/iamsaifraihan)
-- 📧 **Email**: [Your Email Address] _(optional)_
+- 📧 **Email**: [raihan.saif28@gmail.com]
 
 ---
 
