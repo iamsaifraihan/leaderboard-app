@@ -27,9 +27,9 @@ const UserRow = memo(({ user, index, onSelect }) => {
       animate={{ opacity: 1, y: 0 }} // Simplified animate state
       exit={{ opacity: 0, y: -10 }} // Simplified exit state
       transition={{ duration: 0.2 }} // Faster transition
-      whileHover={{ scale: 1.02 }} // Subtle hover effect
+      whileHover={{ backgroundColor: "#EDE9FE" }}
       whileTap={{ scale: 0.98 }} // Subtle tap effect
-      className={`hover:bg-violet-200 transition-all ${
+      className={` transition-all ${
         index % 2 === 0 ? "bg-violet-50" : "bg-white"
       }`}
     >
