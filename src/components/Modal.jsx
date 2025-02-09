@@ -1,11 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50">
+    <motion.div
+      initial={{ opacity: 0, y: -10 }} // Simplified initial state
+      animate={{ opacity: 1, y: 0 }} // Simplified animate state
+      exit={{ opacity: 0, y: -10 }} // Simplified exit state
+      transition={{ duration: 0.5 }} // Faster transition
+      className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center z-50"
+    >
       <div className="bg-white rounded-lg shadow-xl relative p-6 w-sm">
         <button
           onClick={onClose}
@@ -15,7 +22,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         </button>
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
