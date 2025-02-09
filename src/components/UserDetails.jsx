@@ -7,17 +7,17 @@ const UserDetails = memo(({ user, onClose }) => {
 
   return (
     <Modal isOpen={!!user} onClose={onClose}>
-      <p className="text-gray-500">User Details</p>
+      <p className="text-gray-600 dark:text-gray-400">User Details</p>
       <hr className="my-2 border border-gray-100" />
       <div className="flex justify-between">
         <div>
-          <h2 className="text-xl font-semibold text-violet-800 mb-2">
+          <h2 className="text-xl font-semibold text-violet-800 dark:text-violet-400 mb-2">
             {user.name}
           </h2>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             <strong>Age:</strong> {user.age}
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             <strong>Address:</strong> {user.address}
           </p>
         </div>

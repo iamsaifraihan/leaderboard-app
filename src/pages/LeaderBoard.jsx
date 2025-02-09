@@ -4,7 +4,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
 import Loader from "../components/loader";
 import UserDetails from "../components/UserDetails";
-import "../index.css";
+import ThemeToggle from "../ThemeToggle";
 
 const UserRow = lazy(() => import("../components/UserRow"));
 const AddUserForm = lazy(() => import("../components/AddUserForm"));
@@ -77,13 +77,14 @@ const Leaderboard = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-violet-800 mb-6">
+      <ThemeToggle />
+      <h1 className="text-3xl font-bold text-center text-violet-800 dark:text-violet-400 mb-6">
         🏆 Leaderboard 🏆
       </h1>
       <Suspense fallback={<Loader />}>
         <SearchSortControls />
       </Suspense>
-      <div className="overflow-x-auto rounded-lg shadow-lg">
+      <div className="overflow-x-auto rounded-lg shadow-lg dark:shadow-2xl dark:shadow-stone-900">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gradient-to-r from-violet-700 to-purple-500 text-white">
