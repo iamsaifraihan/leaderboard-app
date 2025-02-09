@@ -29,33 +29,37 @@ const UserRow = memo(({ user, index, onSelect }) => {
       exit={{ opacity: 0, y: -10 }} // Simplified exit state
       transition={{ duration: 0.2 }} // Faster transition
       whileTap={{ scale: 0.98 }} // Subtle tap effect
-      className={`hover:bg-violet-100 ${
-        index % 2 === 0 ? "bg-violet-50" : "bg-white"
+      className={`hover:bg-violet-100 dark:hover:bg-stone-700 ${
+        index % 2 === 0
+          ? "bg-violet-50 dark:bg-stone-800"
+          : "bg-white dark:bg-stone-900"
       }`}
     >
       <td
-        className="p-4 text-lg font-medium cursor-pointer text-violet-600 hover:underline"
+        className="p-4 text-lg font-medium cursor-pointer text-violet-800 dark:text-violet-400"
         onClick={onSelect}
       >
         {user.name}
       </td>
-      <td className="p-4 text-center font-bold text-gray-700">{user.points}</td>
+      <td className="p-4 text-center font-bold text-gray-700 dark:text-white">
+        {user.points}
+      </td>
       <td className="p-4 flex justify-end gap-2">
         <button
           onClick={handleIncrement}
-          className="cursor-pointer border border-green-500  px-3 py-1 rounded-md hover:bg-green-400 hover:text-white transition"
+          className="cursor-pointer border border-green-500  px-2 py-1 rounded-md hover:bg-green-100 hover:text-white transition"
         >
           ➕
         </button>
         <button
           onClick={handleDecrement}
-          className="cursor-pointer border border-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-white transition"
+          className="cursor-pointer border border-yellow-500 px-2 py-1 rounded-md hover:bg-yellow-100 hover:text-white transition"
         >
           ➖
         </button>
         <button
           onClick={handleDelete}
-          className="cursor-pointer border border-red-500 px-3 py-1 rounded-md hover:bg-red-400 hover:text-white transition"
+          className="cursor-pointer border border-red-500 px-2 py-1 rounded-md hover:bg-red-100 hover:text-white transition"
         >
           ❌
         </button>
