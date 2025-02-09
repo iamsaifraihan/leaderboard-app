@@ -28,7 +28,7 @@ const SearchSortControls = () => {
         placeholder="Search by name..."
         value={searchQuery}
         onChange={(e) => handleSearch(e)}
-        className="p-3 border rounded-md w-full sm:w-1/2 focus:ring-2 focus:ring-blue-500"
+        className="p-2 border border-violet-600 rounded-md w-full sm:w-1/2 focus:ring-2 focus:ring-blue-500"
       />
 
       <div className="flex gap-2 mt-2 sm:mt-0">

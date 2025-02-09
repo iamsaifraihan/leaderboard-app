@@ -1,4 +1,5 @@
 import React, { useEffect, Suspense, lazy, useState, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
 import Loader from "../components/loader";
@@ -55,8 +56,8 @@ const Leaderboard = () => {
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-2xl rounded-xl mt-6 flex flex-col">
-      <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center text-violet-800 mb-6">
         🏆 Leaderboard
       </h1>
       <Suspense fallback={<Loader />}>
@@ -65,7 +66,7 @@ const Leaderboard = () => {
       <div className="overflow-x-auto rounded-lg shadow-md">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+            <tr className="bg-gradient-to-r from-violet-600 to-purple-400 text-white">
               <th className="p-4 text-left">Name</th>
               <th className="p-4">Points</th>
               <th className="p-4 text-right">Actions</th>
@@ -81,14 +82,16 @@ const Leaderboard = () => {
                 </tr>
               }
             >
-              {filteredUsers.map((user, index) => (
-                <UserRow
-                  key={user.id}
-                  user={user}
-                  index={index}
-                  onSelect={() => setSelectedUser(user)}
-                />
-              ))}
+              <AnimatePresence>
+                {filteredUsers.map((user, index) => (
+                  <UserRow
+                    key={user.id}
+                    user={user}
+                    index={index}
+                    onSelect={() => setSelectedUser(user)}
+                  />
+                ))}
+              </AnimatePresence>
             </Suspense>
           </tbody>
         </table>

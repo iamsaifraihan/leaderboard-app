@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import {
   incrementPointsThunk,
   decrementPointsThunk,
@@ -20,9 +21,14 @@ const UserRow = memo(({ user, index, onSelect }) => {
     dispatch(deleteUserThunk(user.id));
   };
   return (
-    <tr
+    <motion.tr
+      layout // Enables smooth movement animations
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ type: "tween", stiffness: 150 }}
       className={`hover:bg-violet-200 transition-all ${
-        index % 2 === 0 ? "bg-violet-50" : ""
+        index % 2 === 0 ? "bg-violet-50" : "bg-white"
       }`}
     >
       <td
@@ -52,7 +58,7 @@ const UserRow = memo(({ user, index, onSelect }) => {
           ❌
         </button>
       </td>
-    </tr>
+    </motion.tr>
   );
 });
 
