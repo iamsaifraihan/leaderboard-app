@@ -15,6 +15,7 @@ const UserRow = memo(({ user, index, onSelect }) => {
     dispatch(incrementPointsThunk(user.id));
   };
   const handleDecrement = () => {
+    if (user.points === 0) return;
     dispatch(decrementPointsThunk(user.id));
   };
   const handleDelete = () => {
