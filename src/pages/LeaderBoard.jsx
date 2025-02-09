@@ -58,7 +58,7 @@ const Leaderboard = () => {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-center text-violet-800 mb-6">
-        🏆 Leaderboard
+        🏆 Leaderboard 🏆
       </h1>
       <Suspense fallback={<Loader />}>
         <SearchSortControls />
@@ -66,7 +66,7 @@ const Leaderboard = () => {
       <div className="overflow-x-auto rounded-lg shadow-lg">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-gradient-to-r from-violet-600 to-purple-400 text-white">
+            <tr className="bg-gradient-to-r from-violet-700 to-purple-500 text-white">
               <th className="p-4 text-left">Name</th>
               <th className="p-4">Points</th>
               <th className="p-4 text-right">Actions</th>

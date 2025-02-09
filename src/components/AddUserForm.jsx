@@ -60,7 +60,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
               placeholder="Name"
               value={formData.name}
               onChange={(e) => handleChange(e)}
-              className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring-2 focus:ring-blue-500 ${
+              className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring focus:ring-violet-500 outline-none ${
                 errors.name ? "border-red-500" : ""
               }`}
               required
@@ -76,7 +76,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
               placeholder="Age"
               value={formData.age}
               onChange={handleChange}
-              className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring-2 focus:ring-blue-500 ${
+              className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring focus:ring-violet-500 outline-none ${
                 errors.age ? "border-red-500" : ""
               }`}
               required
@@ -91,7 +91,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
               placeholder="Address"
               value={formData.address}
               onChange={handleChange}
-              className={`p-3 border border-violet-600 rounded-sm w-full focus:ring-2 focus:ring-blue-500 ${
+              className={`p-3 border border-violet-600 rounded-sm w-full focus:ring focus:ring-violet-500 outline-none ${
                 errors.address ? "border-red-500" : ""
               }`}
               rows={3}

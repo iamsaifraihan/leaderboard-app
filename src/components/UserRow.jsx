@@ -28,12 +28,12 @@ const UserRow = memo(({ user, index, onSelect }) => {
       exit={{ opacity: 0, y: -10 }} // Simplified exit state
       transition={{ duration: 0.2 }} // Faster transition
       whileTap={{ scale: 0.98 }} // Subtle tap effect
-      className={`hover:bg-violet-200 ${
+      className={`hover:bg-violet-100 ${
         index % 2 === 0 ? "bg-violet-50" : "bg-white"
       }`}
     >
       <td
-        className="p-4 text-lg font-medium cursor-pointer text-blue-600 hover:underline"
+        className="p-4 text-lg font-medium cursor-pointer text-violet-600 hover:underline"
         onClick={onSelect}
       >
         {user.name}
@@ -42,19 +42,19 @@ const UserRow = memo(({ user, index, onSelect }) => {
       <td className="p-4 flex justify-end gap-2">
         <button
           onClick={handleIncrement}
-          className="cursor-pointer border border-green-500  px-3 py-1 rounded-md hover:bg-green-600 hover:text-white transition"
+          className="cursor-pointer border border-green-500  px-3 py-1 rounded-md hover:bg-green-400 hover:text-white transition"
         >
           ➕
         </button>
         <button
           onClick={handleDecrement}
-          className="cursor-pointer border border-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-600 hover:text-white transition"
+          className="cursor-pointer border border-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-white transition"
         >
           ➖
         </button>
         <button
           onClick={handleDelete}
-          className="cursor-pointer border border-red-500 px-3 py-1 rounded-md hover:bg-red-600 hover:text-white transition"
+          className="cursor-pointer border border-red-500 px-3 py-1 rounded-md hover:bg-red-400 hover:text-white transition"
         >
           ❌
         </button>
