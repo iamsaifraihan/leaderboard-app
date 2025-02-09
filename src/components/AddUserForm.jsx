@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addUserThunk } from "../store/slices/leaderboardSlice";
-import Modal from "./Modal";
+import Modal from "./ok";
 
 const AddUserForm = ({ isOpen, onClose }) => {
   // const [name, setName] = useState("");
