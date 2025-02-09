@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import Modal from "./ok";
+import Modal from "./Modal";
 
 const UserDetails = memo(({ user, onClose }) => {
   console.log("UserDetails rendered");

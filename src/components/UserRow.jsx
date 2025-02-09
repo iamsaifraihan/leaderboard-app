@@ -67,6 +67,7 @@ UserRow.propTypes = {
     address: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default UserRow;
