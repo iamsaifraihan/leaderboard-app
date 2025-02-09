@@ -10,12 +10,9 @@ import {
 const initialState = {
   loading: false,
   error: null,
-  users: [
-    { id: 1, name: 'Alice', age: 25, points: 0, address: '123 Street, City' },
-    { id: 2, name: 'Bob', age: 28, points: 0, address: '456 Avenue, City' }
-  ],
+  users: [],
   searchQuery: '',
-  sortBy: 'name' // "name" or "points"
+  sortBy: 'points' // "name" or "points"
 }
 
 // Thunks for API calls
@@ -47,13 +44,13 @@ const leaderBoardSlice = createSlice({
       const selectedUser = state.users.find(u => u.id === action.payload);
       if (selectedUser) selectedUser.points += 1
       // Sort the user list 
-      state.users.sort((a, b) => a.points - b.points)
+      // state.users.sort((a, b) => a.points - b.points)
     },
     decrementPoints: (state, action) => {
       const selectedUser = state.users.find(u => u.id === action.payload);
       if (selectedUser) selectedUser.points -= 1
       // Sort the user list 
-      state.users.sort((a, b) => a.points - b.points)
+      // state.users.sort((a, b) => a.points - b.points)
     },
     addUser: (state, action) => {
       state.users.push({
@@ -83,7 +80,8 @@ const leaderBoardSlice = createSlice({
     })
       .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = false
-        state.users = action.payload
+        state.users = action.payload.sort((a, b) => b.points - a.points); // Sort users by points
+        // state.users = action.payload 
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = false

@@ -61,6 +61,7 @@ UserRow.propTypes = {
     points: PropTypes.number.isRequired,
     address: PropTypes.string.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default UserRow;

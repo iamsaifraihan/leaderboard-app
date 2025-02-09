@@ -15,11 +15,12 @@ const selectLeaderboardData = (state) => ({
   loading: state.leaderBoard.loading,
   error: state.leaderBoard.error,
   searchQuery: state.leaderBoard.searchQuery,
+  sortBy: state.leaderBoard.sortBy,
 });
 
 const Leaderboard = () => {
   const dispatch = useDispatch();
-  const { users, loading, error, searchQuery } = useSelector(
+  const { users, loading, error, searchQuery, sortBy } = useSelector(
     selectLeaderboardData,
     shallowEqual
   );
@@ -31,9 +32,18 @@ const Leaderboard = () => {
 
   const filteredUsers =
     users &&
-    users.filter((user) =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    users
+      .filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      .sort((a, b) => {
+        if (sortBy === "name") {
+          return a.name.localeCompare(b.name);
+        } else if (sortBy === "points") {
+          return b.points - a.points;
+        }
+        return 0;
+      });
 
   if (loading) return selectLeaderboardData;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
