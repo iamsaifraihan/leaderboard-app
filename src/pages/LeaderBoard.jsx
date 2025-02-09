@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense, lazy, useState, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
 import Loader from "../components/loader";
@@ -52,6 +52,26 @@ const Leaderboard = () => {
     setSelectedUser(null);
   }, []);
 
+  const rowElm =
+    filteredUsers.length === 0 ? (
+      <tr>
+        <td colSpan="3" className="text-center p-3">
+          No users found.
+        </td>
+      </tr>
+    ) : (
+      <AnimatePresence>
+        {filteredUsers.map((user, index) => (
+          <UserRow
+            key={user.id}
+            user={user}
+            index={index}
+            onSelect={() => setSelectedUser(user)}
+          />
+        ))}
+      </AnimatePresence>
+    );
+
   if (loading) return selectLeaderboardData;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
@@ -82,16 +102,7 @@ const Leaderboard = () => {
                 </tr>
               }
             >
-              <AnimatePresence>
-                {filteredUsers.map((user, index) => (
-                  <UserRow
-                    key={user.id}
-                    user={user}
-                    index={index}
-                    onSelect={() => setSelectedUser(user)}
-                  />
-                ))}
-              </AnimatePresence>
+              {rowElm}
             </Suspense>
           </tbody>
         </table>
