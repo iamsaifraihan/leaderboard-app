@@ -63,7 +63,7 @@ const Leaderboard = () => {
       <Suspense fallback={<Loader />}>
         <SearchSortControls />
       </Suspense>
-      <div className="overflow-x-auto rounded-lg shadow-md">
+      <div className="overflow-x-auto rounded-lg shadow-lg">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gradient-to-r from-violet-600 to-purple-400 text-white">
@@ -103,13 +103,11 @@ const Leaderboard = () => {
         >
           Add New User
         </button>
-        <Suspense fallback={<Loader />}>
-          {/* <AddUserForm /> */}
-          <AddUserForm
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          />
-        </Suspense>
+        {/* <AddUserForm /> */}
+        <AddUserForm
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </div>
       <UserDetails user={selectedUser} onClose={handleCloseUserDetails} />
     </div>

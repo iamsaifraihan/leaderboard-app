@@ -81,7 +81,6 @@ const leaderBoardSlice = createSlice({
       .addCase(fetchUsersThunk.fulfilled, (state, action) => {
         state.loading = false
         state.users = action.payload.sort((a, b) => b.points - a.points); // Sort users by points
-        // state.users = action.payload 
       })
       .addCase(fetchUsersThunk.rejected, (state, action) => {
         state.loading = false
