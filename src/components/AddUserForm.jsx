@@ -28,8 +28,6 @@ const AddUserForm = ({ isOpen, onClose }) => {
   };
 
   const handleChange = (e) => {
-    console.log(e.target);
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,

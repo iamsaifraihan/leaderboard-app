@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import Modal from "./Modal";
 
 const UserDetails = memo(({ user, onClose }) => {
-  console.log("UserDetails rendered");
-
   if (!user) return null;
 
   return (

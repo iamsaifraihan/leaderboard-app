@@ -22,11 +22,13 @@ const UserRow = memo(({ user, index, onSelect }) => {
   };
   return (
     <motion.tr
-      layout // Enables smooth movement animations
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ type: "tween", stiffness: 150 }}
+      layout // Enable layout animations
+      initial={{ opacity: 0, y: -10 }} // Simplified initial state
+      animate={{ opacity: 1, y: 0 }} // Simplified animate state
+      exit={{ opacity: 0, y: -10 }} // Simplified exit state
+      transition={{ duration: 0.2 }} // Faster transition
+      whileHover={{ scale: 1.02 }} // Subtle hover effect
+      whileTap={{ scale: 0.98 }} // Subtle tap effect
       className={`hover:bg-violet-200 transition-all ${
         index % 2 === 0 ? "bg-violet-50" : "bg-white"
       }`}
