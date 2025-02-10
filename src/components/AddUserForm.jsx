@@ -18,6 +18,8 @@ const AddUserForm = ({ isOpen, onClose }) => {
 
   const validateForm = () => {
     const newErrors = {};
+    console.log("formData", formData);
+
     if (formData.name.length > 250)
       newErrors.name = "Name must be 250 characters or less.";
     if (formData.age < 0) newErrors.age = "Age cannot be negative.";

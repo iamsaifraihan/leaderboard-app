@@ -39,7 +39,7 @@ const UserRow = memo(({ user, index, onSelect }) => {
         className="p-4 text-lg font-medium cursor-pointer text-violet-800 dark:text-violet-400"
         onClick={onSelect}
       >
-        {user.name}
+        <div className="truncate max-w-80"> {user.name}</div>
       </td>
       <td className="p-4 text-center font-bold text-gray-700 dark:text-white">
         {user.points}
