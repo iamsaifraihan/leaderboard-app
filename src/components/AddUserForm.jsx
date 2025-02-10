@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addUserThunk } from "../store/slices/leaderboardSlice";
 import Modal from "./Modal";
 
 const AddUserForm = ({ isOpen, onClose }) => {
-  // const [name, setName] = useState("");
-  // const [age, setAge] = useState("");
-  // const [address, setAddress] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -15,6 +12,15 @@ const AddUserForm = ({ isOpen, onClose }) => {
   });
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setFormData({
+      name: "",
+      age: "",
+      address: "",
+    });
+    setErrors({});
+  }, [onClose]);
 
   const validateForm = () => {
     const newErrors = {};
