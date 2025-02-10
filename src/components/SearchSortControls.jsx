@@ -28,13 +28,13 @@ const SearchSortControls = () => {
         placeholder="Search by name..."
         value={searchQuery}
         onChange={(e) => handleSearch(e)}
-        className="p-2 border border-violet-600 rounded-md w-full sm:w-1/2 focus:ring focus:ring-violet-500 outline-none"
+        className="p-2 rounded-md w-full sm:w-1/2 outline-none border  border-violet-600 dark:border-stone-600 dark:focus:border-violet-600 focus:ring focus:ring-violet-600 "
       />
 
       <div className="flex gap-2 mt-2 sm:mt-0">
         <button
           onClick={handleSortByName}
-          className={`cursor-pointer  px-4 py-2 rounded-md text-black ${
+          className={`cursor-pointer  px-4 py-2 rounded-md text-black shadow-md hover:shadow-lg ${
             sortBy === "name" ? "bg-violet-600 text-white" : "bg-gray-200"
           }`}
         >
@@ -42,7 +42,7 @@ const SearchSortControls = () => {
         </button>
         <button
           onClick={handleSortByPoints}
-          className={`cursor-pointer px-4 py-2 rounded-md text-black ${
+          className={`cursor-pointer px-4 py-2 rounded-md text-black shadow-md hover:shadow-lg ${
             sortBy === "points" ? "bg-violet-600 text-white" : "bg-gray-200"
           }`}
         >

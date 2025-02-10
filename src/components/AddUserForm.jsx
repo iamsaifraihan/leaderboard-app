@@ -59,7 +59,9 @@ const AddUserForm = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <form onSubmit={handleSubmit}>
-        <h2 className="text-xl font-semibold mb-3">Add New User</h2>
+        <h2 className="text-xl font-semibold mb-3 dark:text-stone-200">
+          Add New User
+        </h2>
         <div className="flex flex-col gap-4">
           <div className="w-full">
             <input
@@ -68,7 +70,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
               placeholder="Name"
               value={formData.name}
               onChange={(e) => handleChange(e)}
-              className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring focus:ring-violet-500 outline-none ${
+              className={`p-3 border border-violet-600 dark:border-stone-600 dark:focus:border-violet-600 rounded-sm  w-full focus:ring focus:ring-violet-600  outline-none ${
                 errors.name ? "border-red-500" : ""
               }`}
               required
@@ -84,7 +86,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
               placeholder="Age"
               value={formData.age}
               onChange={handleChange}
-              className={`p-3 border border-violet-600 rounded-sm  w-full focus:ring focus:ring-violet-500 outline-none ${
+              className={`p-3 border border-violet-600 dark:border-stone-600 dark:focus:border-violet-600 rounded-sm  w-full focus:ring focus:ring-violet-600  outline-none ${
                 errors.age ? "border-red-500" : ""
               }`}
               required
@@ -99,7 +101,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
               placeholder="Address"
               value={formData.address}
               onChange={handleChange}
-              className={`p-3 border border-violet-600 rounded-sm w-full focus:ring focus:ring-violet-500 outline-none ${
+              className={`p-3 rounded-sm w-full outline-none border  border-violet-600 dark:border-stone-600 dark:focus:border-violet-600 focus:ring focus:ring-violet-600  ${
                 errors.address ? "border-red-500" : ""
               }`}
               rows={3}
@@ -112,7 +114,7 @@ const AddUserForm = ({ isOpen, onClose }) => {
         </div>
         <button
           type="submit"
-          className="mt-4 w-full bg-violet-600 px-3 py-2 rounded-md hover:bg-violet-900 text-white transition cursor-pointer"
+          className="mt-4 w-full bg-violet-600 px-3 py-2 rounded-md hover:bg-violet-900 text-white transition cursor-pointer shadow-md hover:shadow-lg"
         >
           Add User
         </button>
