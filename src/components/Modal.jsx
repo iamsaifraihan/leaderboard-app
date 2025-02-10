@@ -11,9 +11,9 @@ const Modal = ({ isOpen, onClose, children }) => {
       animate={{ opacity: 1, y: 0 }} // Simplified animate state
       exit={{ opacity: 0, y: -10 }} // Simplified exit state
       transition={{ duration: 0.5 }} // Faster transition
-      className="fixed inset-0 backdrop-blur-xs flex items-center justify-center z-50"
+      className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
     >
-      <div className="bg-white rounded-lg shadow-xl relative p-6 w-sm dark:bg-transparent dark:backdrop-blur-2xl dark:border dark:border-stone-700">
+      <div className="bg-white rounded-lg shadow-xl relative p-6 w-sm dark:bg-transparent  dark:border dark:border-stone-700 dark:inset-shadow-sm dark:inset-shadow-stone-500/50">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-xl"
