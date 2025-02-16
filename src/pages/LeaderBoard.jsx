@@ -1,4 +1,11 @@
-import React, { useEffect, Suspense, lazy, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  Suspense,
+  lazy,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
@@ -26,6 +33,7 @@ const Leaderboard = () => {
     selectLeaderboardData,
     shallowEqual
   );
+  console.log("users", users);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -48,12 +56,31 @@ const Leaderboard = () => {
         return 0;
       });
 
+  const filteredMemoUser = useMemo(() => {
+    if (!users) return [];
+    return users
+      .filter((user) => {
+        return user.name.toLowerCase().includes(searchQuery.toLowerCase());
+      })
+      .sort((a, b) => {
+        if (sortBy === "name") {
+          return a.name.localeCompare(b.name);
+        } else {
+          return b.points - a.points;
+        }
+      });
+  }, [users, sortBy, searchQuery]);
+
+  const handleCloseAddUserForm = useCallback(() => {
+    setIsModalOpen(false);
+  }, []);
+
   const handleCloseUserDetails = useCallback(() => {
     setSelectedUser(null);
   }, []);
 
   const rowElm =
-    filteredUsers.length === 0 ? (
+    filteredMemoUser.length === 0 ? (
       <tr>
         <td colSpan="3" className="text-center p-3">
           No users found.
@@ -61,7 +88,7 @@ const Leaderboard = () => {
       </tr>
     ) : (
       <AnimatePresence>
-        {filteredUsers.map((user, index) => (
+        {filteredMemoUser.map((user, index) => (
           <UserRow
             key={user.id}
             user={user}
@@ -116,10 +143,7 @@ const Leaderboard = () => {
           Add New User
         </button>
         {/* <AddUserForm /> */}
-        <AddUserForm
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
+        <AddUserForm isOpen={isModalOpen} onClose={handleCloseAddUserForm} />
       </div>
       <UserDetails user={selectedUser} onClose={handleCloseUserDetails} />
     </div>

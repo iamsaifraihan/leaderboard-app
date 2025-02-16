@@ -5,6 +5,7 @@ import { addUserThunk } from "../store/slices/leaderboardSlice";
 import Modal from "./Modal";
 
 const AddUserForm = ({ isOpen, onClose }) => {
+  console.log("userForm rendered");
   const [formData, setFormData] = useState({
     name: "",
     age: "",
