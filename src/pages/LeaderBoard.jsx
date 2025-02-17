@@ -41,15 +41,16 @@ const Leaderboard = () => {
   }, [dispatch]);
 
   const filteredUsers = useMemo(() => {
+    if (!users) return [];
     return users
       .filter((user) =>
         user.name.toLowerCase().includes(searchQuery?.toLowerCase())
       )
       .sort((a, b) => {
         if (sortBy === "name") {
-          a.name.localeCompare(b.name);
+          return a.name.localeCompare(b.name);
         } else {
-          b.points - a.points;
+          return b.points - a.points;
         }
       });
   }, [users, searchQuery, sortBy]);
