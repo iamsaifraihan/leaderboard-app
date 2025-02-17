@@ -1,18 +1,22 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery, setSortBy } from "../store/slices/leaderboardSlice";
 import PropTypes from "prop-types";
+import useDebounce from "../hooks/useDebounce";
 
 const SearchSortControls = () => {
   const dispatch = useDispatch();
   const { searchQuery, sortBy } = useSelector((state) => state.leaderBoard);
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery);
+  const debounceSearch = useDebounce(localSearchQuery, 300);
 
-  const handleSearch = useCallback(
-    (e) => {
-      dispatch(setSearchQuery(e.target.value));
-    },
-    [dispatch]
-  );
+  useEffect(() => {
+    dispatch(setSearchQuery(debounceSearch));
+  }, [debounceSearch, dispatch]);
+
+  const handleSearch = (e) => {
+    setLocalSearchQuery(e.target.value);
+  };
   const handleSortByName = useCallback(() => {
     dispatch(setSortBy("name"));
   }, [dispatch]);
@@ -26,7 +30,7 @@ const SearchSortControls = () => {
       <input
         type="text"
         placeholder="Search by name..."
-        value={searchQuery}
+        value={localSearchQuery}
         onChange={(e) => handleSearch(e)}
         className="p-2 rounded-md w-full sm:w-1/2 outline-none border  border-violet-600 dark:border-stone-600 dark:focus:border-violet-600 focus:ring focus:ring-violet-600 "
       />

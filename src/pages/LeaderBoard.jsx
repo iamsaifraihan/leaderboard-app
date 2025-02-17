@@ -43,7 +43,7 @@ const Leaderboard = () => {
   const filteredUsers = useMemo(() => {
     return users
       .filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+        user.name.toLowerCase().includes(searchQuery?.toLowerCase())
       )
       .sort((a, b) => {
         if (sortBy === "name") a.name.localeCompare(b.name);
