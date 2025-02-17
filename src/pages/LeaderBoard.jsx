@@ -10,7 +10,6 @@ import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchUsersThunk } from "../store/slices/leaderboardSlice";
 import Loader from "../components/loader";
-import UserDetails from "../components/UserDetails";
 import ThemeToggle from "../ThemeToggle";
 
 const UserRow = lazy(() => import("../components/UserRow"));
@@ -18,6 +17,7 @@ const AddUserForm = lazy(() => import("../components/AddUserForm"));
 const SearchSortControls = lazy(() =>
   import("../components/SearchSortControls")
 );
+const UserDetails = lazy(() => import("../components/UserDetails"));
 
 const selectLeaderboardData = (state) => ({
   users: state.leaderBoard.users,
@@ -33,7 +33,6 @@ const Leaderboard = () => {
     selectLeaderboardData,
     shallowEqual
   );
-  console.log("users", users);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -41,35 +40,16 @@ const Leaderboard = () => {
     dispatch(fetchUsersThunk());
   }, [dispatch]);
 
-  const filteredUsers =
-    users &&
-    users
+  const filteredUsers = useMemo(() => {
+    return users
       .filter((user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
       .sort((a, b) => {
-        if (sortBy === "name") {
-          return a.name.localeCompare(b.name);
-        } else if (sortBy === "points") {
-          return b.points - a.points;
-        }
-        return 0;
+        if (sortBy === "name") a.name.localeCompare(b.name);
+        else b.name - a.name;
       });
-
-  const filteredMemoUser = useMemo(() => {
-    if (!users) return [];
-    return users
-      .filter((user) => {
-        return user.name.toLowerCase().includes(searchQuery.toLowerCase());
-      })
-      .sort((a, b) => {
-        if (sortBy === "name") {
-          return a.name.localeCompare(b.name);
-        } else {
-          return b.points - a.points;
-        }
-      });
-  }, [users, sortBy, searchQuery]);
+  }, [users, searchQuery, sortBy]);
 
   const handleCloseAddUserForm = useCallback(() => {
     setIsModalOpen(false);
@@ -80,7 +60,7 @@ const Leaderboard = () => {
   }, []);
 
   const rowElm =
-    filteredMemoUser.length === 0 ? (
+    filteredUsers.length === 0 ? (
       <tr>
         <td colSpan="3" className="text-center p-3">
           No users found.
@@ -88,7 +68,7 @@ const Leaderboard = () => {
       </tr>
     ) : (
       <AnimatePresence>
-        {filteredMemoUser.map((user, index) => (
+        {filteredUsers.map((user, index) => (
           <UserRow
             key={user.id}
             user={user}
