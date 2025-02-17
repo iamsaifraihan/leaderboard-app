@@ -7,17 +7,18 @@ import {
   decrementPointsThunk,
   deleteUserThunk,
 } from "../store/slices/leaderboardSlice";
+import useThrottleFn from "../hooks/useThrottleFn";
 
 const UserRow = memo(({ user, index, onSelect }) => {
   const dispatch = useDispatch();
 
-  const handleIncrement = () => {
+  const handleIncrement = useThrottleFn(() => {
     dispatch(incrementPointsThunk(user.id));
-  };
-  const handleDecrement = () => {
+  }, 300);
+  const handleDecrement = useThrottleFn(() => {
     if (user.points === 0) return;
     dispatch(decrementPointsThunk(user.id));
-  };
+  }, 300);
   const handleDelete = () => {
     dispatch(deleteUserThunk(user.id));
   };
