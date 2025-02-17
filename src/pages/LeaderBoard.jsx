@@ -46,8 +46,11 @@ const Leaderboard = () => {
         user.name.toLowerCase().includes(searchQuery?.toLowerCase())
       )
       .sort((a, b) => {
-        if (sortBy === "name") a.name.localeCompare(b.name);
-        else b.name - a.name;
+        if (sortBy === "name") {
+          a.name.localeCompare(b.name);
+        } else {
+          b.points - a.points;
+        }
       });
   }, [users, searchQuery, sortBy]);
 
