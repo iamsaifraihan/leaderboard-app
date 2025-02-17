@@ -5,13 +5,16 @@ import App from "./App.jsx";
 import store from "./store/index.js";
 import { Provider } from "react-redux";
 import { worker } from "./mocks/browsers.js";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 
 const MOUNT_NODE = document.getElementById("root");
 const appRoot = createRoot(MOUNT_NODE);
 const appElm = (
   <Provider store={store}>
     <StrictMode>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </StrictMode>
   </Provider>
 );

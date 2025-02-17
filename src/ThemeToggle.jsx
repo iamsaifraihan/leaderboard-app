@@ -1,35 +1,38 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import { useTheme } from "./context/ThemeContext";
 
 const ThemeToggle = () => {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
+  const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    const initialTheme = localStorage.getItem("theme");
-    if (initialTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
+  // const [darkMode, setDarkMode] = useState(
+  //   localStorage.getItem("theme") === "dark"
+  // );
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+  // useEffect(() => {
+  //   const initialTheme = localStorage.getItem("theme");
+  //   if (initialTheme === "dark") {
+  //     document.documentElement.classList.add("dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (darkMode) {
+  //     document.documentElement.classList.add("dark");
+  //     localStorage.setItem("theme", "dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //     localStorage.setItem("theme", "light");
+  //   }
+  // }, [darkMode]);
 
   return (
     <button
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={toggleTheme}
       className="fixed top-4 cursor-pointer right-4 px-2 py-1 bg-gray-200 dark:bg-stone-900 text-black dark:text-white rounded-lg shadow-md"
     >
-      {darkMode ? "🌙 " : "☀️"}
+      {theme === "dark" ? "🌙 " : "☀️"}
     </button>
   );
 };
