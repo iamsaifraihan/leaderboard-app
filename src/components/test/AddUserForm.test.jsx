@@ -14,10 +14,11 @@ describe("AddUserForm Component", () => {
       reducer: { leaderboard: leaderboardReducer },
     });
     store.dispatch = vi.fn();
+    const onClose = vi.fn();
 
     render(
       <Provider store={store}>
-        <AddUserForm />
+        <AddUserForm isOpen={true} onClose={onClose} />
       </Provider>
     );
 
